@@ -1,0 +1,10 @@
+"""
+
+create a python script called create_kms.py, in this script, you will use boto3 to create a kms key.
+create the unit testing first and run test the script unitl all testing passes.  
+please make sure this is a production grade code.  the test should located in test folder, and they are using pytest.  
+please also create a python file which show case how to run these.  it should be located in _example folder
+
+1) when you create boto3, I need you to use aws profile called latest
+
+"""
