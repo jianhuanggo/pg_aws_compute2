@@ -19,9 +19,10 @@ def create_basic_key(key_alias: str, description: str):
         print(f"Error creating basic key: {str(e)}")
 
 
-from create_key_pair import process_usernames
+from create_key_pair import process_usernames, delete_credential
 
-def create_key_pair_file(user_context: str):
+
+def create_key_pair_file(profile_name: str, user_context: str):
 
     output_dir = "ec2_keys"
     os.makedirs(output_dir, exist_ok=True)
@@ -29,6 +30,7 @@ def create_key_pair_file(user_context: str):
     # Process the usernames and create key pairs
     try:
         results = process_usernames(
+            profile_name=profile_name,
             username_json_path="username.json",
             output_dir=output_dir,
             user_context=user_context
@@ -174,13 +176,16 @@ def create_compute():
     Create a compute instance
     """
     #create_basic_key(key_alias='aws_ec2_ebsdefault', description='Example KMS key for ebs encryption')
-    #create_key_pair_file(user_context="fusion-dev")
+    create_key_pair_file("tag_fusion", user_context="app-fusion-prod")
     # create_role_and_policy("arn:aws:kms:us-east-1:717435123117:key/4797d75f-a543-41c0-9de8-5523827637e4")
 
     #create_and_delete_security_group()
-    create_and_delete_launch_template()
+    # create_and_delete_launch_template()
+
 
 def delete_compute():
     """
     Delete a compute instance
     """
+
+    delete_credential(profile_name="tag_fusion", username_json_path="username.json", user_context="app-fusion-dev")
