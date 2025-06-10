@@ -112,6 +112,7 @@ def create_and_delete_security_group():
 
 from create_launch_template import create_launch_template, delete_launch_template
 
+
 def create_and_delete_launch_template():
     """Create and then delete a launch template."""
     print("\nCreating launch template...")
